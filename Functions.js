@@ -3,12 +3,11 @@ function volume(r, h) {
     return 3.14 * r * r * h
 }
 let vol = volume(1.2, 3);
-console.log(vol);
+console.log(`The volume of a cylinder is ${vol}`);
 /*Here we can see that the function is called and is stored in another varible . Now we are we not 
 bound to do that like for example we can also directly call the function and and it will run like normal
-but if we want to use the return value of a function like for further operations (+,-,/,*) or comparisons (>,<,===) or in conditionals etc 
-then we definitely need to store that value of a function in another variable and then further use that value 
-so that is why we have called the function, and assinged that function to another variable....!*/
+but if we want to use the return value of a function like for further operations (+,-,/,*) or comparisons 
+(>,<,===) or in conditionals etc then we definitely need to store that value of a function in another variable and then further use that value so that is why we have called the function, and assinged that function to another variable....!*/
 
 // Expression Function:
 /* In Expression Function we directly assing a function to a variable and that varible store the 
@@ -19,16 +18,15 @@ let area = function (l) {
     return l + l + l + l + l + l;
 }
 console.log(area(5));
-// Now how are we gonna use the value of this function for that we need to store it in another variable like i.e
+// Now how are we gonna use the value of this function for that we need to store it in another 
+// variable like i.e
 
 let a = area(5);
-console.log(a);
+console.log(`So The area of the Cube comes to be : ${a}`);
 
 /*There is no practical diffreence between declaration function and expression Function
-but one key diffrence between the two is that we all call the declration function even before actually creaing it,
-But we cannot call an expression function before creating it i.e (In case of an expression function you first 
-have to create it and then call it , while declarative function are not ristristed to be first declared).
-It is because of the concept of HOISTING IN JAVASCRIPT.....! e.g */
+but one key diffrence between the two is that we all call the declration function even before actually
+creaing it, But we cannot call an expression function before creating it i.e (In case of an expression function you first have to create it and then call it , while declarative function are not ristristed to be first declared). It is because of the concept of HOISTING IN JAVASCRIPT.....! e.g */
 
 let mv = momentum(67, 12);
 
@@ -39,7 +37,108 @@ function momentum(mass, velocity) {
     return mass * velocity;
 }
 
-console.log(mv);
+console.log(`The Momentum is ${mv}`);
 
 // We cannot do that with expression function i.e Expression Function are on top and code for calling them is
 // at the bottom.
+
+/* ARROW FUNXTIONS:
+Are actually the more the advanced version of EXPRESSION FUNTIONS i.e in bothe the Expresson Function
+and in Arrow Function we store the return value of a function directly into a variable but in expression function
+we have to use the keyword of Function after assinging it into a variable while in Arrow function 
+we directly pass the parameters i.e */
+
+let accelaration = function (force, mass) {
+    return force / mass;
+}
+
+let result = accelaration(12, 67);
+console.log(`The accelaration come to be ${result}`);
+
+// The same thing can be written in Arrow function as i.e :
+
+let acccelar = (f, m) => f / m;
+let result_2 = acccelar(12, 10);
+console.log(result_2);
+
+/* Here in arrow function we also don't need to explicitly write the return type ONLY IF IT IS A ONE LINER CODE 
+because the arrow function automatically returns the the value obtained as a result of the code after the Arrow But in Multiple lines code we do need to write the return type manually i.e : */
+
+let potential_energy = (m, g, h) => {
+    console.log(`The Potential Energy AT height H is calculated as Mass * Gravity * Height
+[Mass : ${m} Gravity: ${g} Height: ${h}]`)
+    return `So Potential Energy Comes TO BE : ${m * g * h}`
+}
+
+let pe = potential_energy(45, 9.8, 15);
+console.log(pe);
+
+/* Now we will learn about the concept of FUNCTIONS CALLING OTHER FUNCTIONS:
+Here in this concept what happens is we call a function and inside that function we have called other functions
+, and when those functions are given a call, they gets executed first (SECONDARY FUNCTIONS) , and after they get executed they might or might not returnn some values (depends upon our code) which can then be used in our code accordingly inside the first function which I am calling (PRIMARY FUNCTION) i.e */
+
+let velo = (vi, vf, t) => (vf - vi) / t;
+
+let force = function (mass) {
+    /*Now inorder to calculate we first nned to calculate accelaration and for that we are using the Function of VELO */
+    let accelaration = velo(23, 67, 3);
+    console.log(`Mass : ${mass} Acceleration : ${accelaration}`);
+    let fo_rce = accelaration * mass;
+    return fo_rce;
+
+}
+
+let f = force(10);
+console.log(`The Force would then be ${f}`);
+
+/*Coding Challenge #1
+Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new 
+gymnastics discipline, which works differently.
+Each team competes 3 times, and then the average of the 3 scores is calculated (so 
+one average score per team).
+A team only wins if it has at least double the average score of the other team. 
+Otherwise, no team wins!
+Your tasks:
+1. Create an arrow function 'calcAverage' to calculate the average of 3 scores
+2. Use the function to calculate the average for both teams
+3. Create a function 'checkWinner' that takes the average score of each team 
+as parameters ('avgDolhins' and 'avgKoalas'), and then logs the winner 
+to the console, together with the victory points, according to the rule above. 
+Example: "Koalas win (30 vs. 13)"
+4. Use the 'checkWinner' function to determine the winner for both Data 1 and 
+Data 2
+5. Ignore draws this time
+Test data:
+§ Data 1: Dolphins score 44, 23 and 71. Koalas score 65, 54 and 49
+§ Data 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27
+*/
+
+let calcAverage = (d1, d2, d3) => (d1 + d2 + d3) / 3;
+let avedolphin = calcAverage(44, 23, 71);
+let doll = avedolphin;
+let avekoala = calcAverage(85, 54, 41);
+let kol = avekoala;
+
+function compare(val1, val2) {
+    val1 = doll;
+    val2 = kol;
+    let a1 = val1 / 2;
+    let a2 = val2 / 2;
+    if (a1 > val2) {
+        return `Team Dolphin Wins as it has Double Avearage Score${val1} Than Ream Koala ${val2}`;
+    }
+    else if (a2 > val1) {
+        return `Team Koal Wins as it has Double Avearage Score${val2} Than Ream Dolphin ${val1}`;
+    }
+    else
+        return `Condition For Winning : ONE TEAM SHOULD HAVE DOUBLE THE AVEARGE OF THE OTHER : SO No Team Wins AS NO Team has Double average Tha The other`;
+}
+
+function checkWinner(doll, kol) {
+    console.log(`Average Point of Team Dolphin ${doll}`);
+    console.log(`Average Point of Team Koala ${kol}`);
+    let finalconclusion = compare(doll, kol);
+    return finalconclusion;
+}
+let finalresult = checkWinner(doll, kol);
+console.log(finalresult);
