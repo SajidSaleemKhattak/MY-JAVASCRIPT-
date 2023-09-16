@@ -10,15 +10,50 @@
     <style>
         body {
             background-color: aquamarine;
+        }
+
+        .main {
             display: flex;
             justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #btn {
+            margin-top: 10%;
+            padding: 10px;
+        }
+
+        #bt {
+            margin-top: 5%;
+            padding: 10px;
+            padding-left: 10px;
+            padding-right: 35px;
+
+        }
+
+        #bt ul {
+            text-align: left;
         }
     </style>
+
 
 </head>
 
 <body>
-    <button id="btn">To See The JS CODE open the console.</button>
+    <div class="main">
+        <button id="btn">To See The JS CODE Inspect the Page and Click on Source.</button>
+        <button id="bt"> <span id="sp">Table Of Contents</span><br>
+            <a href="Code.html">Go TO CoDE</a>
+            <ul>
+                <li>Declarative Functions</li>
+                <li>Expression Function</li>
+                <li>Arrow Functions</li>
+                <li>Functions Calling Other Functions</li>
+
+            </ul>
+        </button>
+    </div>
     <script src="Functions.js"></script>
 </body>
 
